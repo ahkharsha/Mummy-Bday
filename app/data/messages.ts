@@ -3,31 +3,31 @@ export const messages = [
   { 
     text: "You are my life", 
     author: "Arun Eatta",
-    hint: " - ",
-    emoji: " - "
+    hint: "💍",
+    emoji: "😘"
   },
   { 
     text: "You are my right hand dear", 
     author: "Mummy",
-    hint: "The ones there since childhood",
-    emoji: " - "
+    hint: "👵🏻",
+    emoji: "💪"
   },
   { 
     text: "You are my son in disguise Raji ma", 
     author: "Daddy",
-    hint: "The ones there since childhood",
-    emoji: " - "
+    hint: "👴🏻",
+    emoji: "🥸"
   },
   { 
     text: "Thank you for raising a miniature version of yourself", 
     author: "Ananya",
     hint: "👀",
-    emoji: " - "
+    emoji: "👀"
   },
   { 
     text: "Love you Mummy 😘", 
     author: "Harsha",
     hint: "👀",
-    emoji: " - "
+    emoji: "👀"
   }
 ]
