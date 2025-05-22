@@ -13,13 +13,12 @@ export default function SecretPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isFamilyFriendly, setIsFamilyFriendly] = useState(false)
 
-  // Dynamic stages based on family friendly mode
+  // Updated stages without final gift
   const STAGES = isFamilyFriendly 
-    ? ['birthday-wish', 'video', 'photos', 'final-gift'] 
-    : ['birthday-wish', 'video', 'message', 'photos', 'final-gift']
+    ? ['birthday-wish', 'video', 'photos'] 
+    : ['birthday-wish', 'video', 'message', 'photos']
 
   useEffect(() => {
-    // Verify authentication and family friendly mode
     if (typeof window !== 'undefined') {
       const auth = sessionStorage.getItem('secretAuth')
       const ff = sessionStorage.getItem('familyFriendly')
@@ -31,9 +30,8 @@ export default function SecretPage() {
       }
     }
 
-    // Load appropriate photos
-    const photoFolder = isFamilyFriendly ? 'group-pics' : 'goofy-pics'
-    const loadedPhotos = Array.from({length: 8}, (_, i) => `/${photoFolder}/photo${i+1}.jpg`)
+    const photoFolder = isFamilyFriendly ? 'group-pics' : 'pics'
+    const loadedPhotos = Array.from({length: 16}, (_, i) => `/${photoFolder}/photo${i+1}.jpg`)
     setPhotos(loadedPhotos)
   }, [router, isFamilyFriendly])
 
@@ -64,7 +62,6 @@ export default function SecretPage() {
     <div className="min-h-screen bg-black text-white p-6 relative overflow-x-hidden">
       <StarryBackground />
       
-      {/* Comet animation */}
       <motion.div
         className="absolute top-20 right-20 w-2 h-2 rounded-full bg-white shadow-lg shadow-sky-400/50"
         initial={{ x: 100, y: -100, opacity: 0 }}
@@ -80,7 +77,6 @@ export default function SecretPage() {
         }}
       />
       
-      {/* Navigation Arrows */}
       <button
         onClick={prevStage}
         disabled={currentStage === 0}
@@ -105,7 +101,6 @@ export default function SecretPage() {
         </svg>
       </button>
 
-      {/* Back Button */}
       <button
         onClick={() => router.push('/')}
         className="fixed top-6 left-6 z-50 bg-sky-900/50 hover:bg-sky-800/70 p-2 rounded-full border border-sky-400/30 transition-all"
@@ -116,7 +111,6 @@ export default function SecretPage() {
         </svg>
       </button>
 
-      {/* Progress Indicator */}
       <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex gap-2">
         {STAGES.map((_, i) => (
           <button
@@ -128,7 +122,6 @@ export default function SecretPage() {
         ))}
       </div>
 
-      {/* Stage 1: Birthday Wish */}
       {currentStage === 0 && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -141,8 +134,8 @@ export default function SecretPage() {
             className={`text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-purple-400`}
           >
             {isFamilyFriendly 
-              ? "Happppppppiestttttttttt Birthdayyyyyyyyy\nmy dearestttttttttt Broskiiiiiiii 🎉🎂✨"
-              : "Happppppppiestttttttttt Birthdayyyyyyyyy\nmy dearestttttttttt Bujukutiiiiiiiii 🎉🎂✨"}
+              ? "Happppppppiestttttttttt Birthdayyyyyyyyy\n dearrrr Mummmyyyyy 🎉🎂✨"
+              : "Happppppppiestttttttttt Birthdayyyyyyyyy\n dearrrr Mummmyyyyy 🎉🎂✨"}
           </motion.h1>
           
           <motion.p
@@ -152,8 +145,8 @@ export default function SecretPage() {
             className="text-xl text-sky-200 mb-12"
           >
             {isFamilyFriendly
-              ? "You've finally crossed your teen and entered 20s. Aunty vayasu vante. Ippo atleast periya ponnu maari iru ma 😁(Joke 😂🫂)"
-              : "You've finally crossed your teen and entered 20s. Aunty vayasu vante. Ippo atleast periya ponnu maari iru ma 😁(Joke 😂🫂)"}
+              ? "Just 5 more years to hit Half Century... Keep going mums!! 😁"
+              : "Just 5 more years to hit Half Century... Keep going mums!! 😁"}
           </motion.p>
 
           <motion.button
@@ -162,12 +155,11 @@ export default function SecretPage() {
             whileTap={{ scale: 0.95 }}
             className="px-8 py-3 bg-gradient-to-r from-sky-400 to-purple-400 text-black rounded-lg font-bold text-lg shadow-lg hover:shadow-sky-400/30 transition-all"
           >
-            Watch my Video Message 🎥
+            Watch our Video Message 🎥
           </motion.button>
         </motion.div>
       )}
 
-      {/* Stage 2: Video */}
       {currentStage === 1 && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -183,7 +175,7 @@ export default function SecretPage() {
               className="w-full"
               onEnded={nextStage}
             >
-              <source src={isFamilyFriendly ? "/harsha_ff.mp4" : "/harsha_wishes.mp4"} type="video/mp4" />
+              <source src={isFamilyFriendly ? "/harsha_ff.mp4" : "/wishes.mp4"} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -192,15 +184,12 @@ export default function SecretPage() {
             onClick={nextStage}
             className="mt-8 flex items-center gap-2 text-sky-300 hover:text-sky-100 transition"
           >
-            {isFamilyFriendly
-              ? "Continue to photos 🖼️"
-              : "Continue to my 3 AM Delululu message 😁"} 
+            Continue to photos 🖼️
             <span className="text-xl">→</span>
           </button>
         </motion.div>
       )}
 
-      {/* Stage 3: Heartfelt Message (only in non-family friendly) */}
       {!isFamilyFriendly && currentStage === 2 && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -211,55 +200,44 @@ export default function SecretPage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-gradient-to-br from-sky-900/20 to-purple-900/20 p-8 rounded-2xl border border-sky-400/20 backdrop-blur-sm"
+            className="bg-gradient-to-br from-sky-900/20 to-purple-900/20 p-8 rounded-2xl border border-sky-400/20 backdrop-blur-sm text-center"
           >
-            <p className="text-lg leading-relaxed mb-6">
-              By this point if you're here, you should've seen the video. Soo idk what to say. I mean. You literally were a magical event in my life. Never have I ever thought I'd get to experience such a friendship. That too never have I ever thought it'll be from a girl.
-            </p>
-            
-            <p className="text-lg leading-relaxed mb-6">
-              I am still soooooo glad that Arun's mom decided to introduce us. Forever grateful to her for that. Even though we've had ugly fights and verbally said that this shouldn't have happened, it's false. If somehow the lord gave me a second chance at that moment, I would do it all over again.
-            </p>
-
-            <p className="text-lg leading-relaxed mb-6">
-              This was the line Pedro Pascal says to Ellie (his daughter figure) in Last of Us after he lies to her about the finding cure situation thing (He saved that girl's life at the cost of killing doctors nurses and other hospital officials, and destroyed the chances of cure just to save her life). Ok I deviated quite a bit from the main message.
-            </p>
-
-            <p className="text-lg leading-relaxed mb-6">
-              The bottom line is, If somehow I got a second chance to go back to day 1 of our friendship, I wouldn't change a thing my broski. I will gladly relive it again, as it's one of the most memorable arcs of my life.
-            </p>
-
-            <p className="text-lg leading-relaxed mb-6">
-              I've said it already many times. Your friendship is one of the most, if not the most, amazing things to have ever happened to my life in my 21 years of existence. And that says a lot. I literally tell you stuff which I don't even tell my mom or family members. I literally cry to you. I literally ask your advice for any major decision. I literally text you at 2 am with random thoughts. I literally spam your reels. Any minor inconvenience I have, the next split thought which comes to my mind is you and talking to you, and with that everything becomes damn good.
-            </p>
-
-            <p className="text-lg leading-relaxed mb-6">
-              Take the morning of HCI exam for example. Instead of studying, I texted you at 8 am. Talked with you for like 10-15 mins, You yourself asked why I'm even talking to you instead of studying. But you have no idea how much of a difference it made to me.
-            </p>
-
-            <p className="text-lg leading-relaxed">
-              You are an irreplaceable part of my life, at least for this phase. Thank you for being there for me. I love you bhai. You're the best forever.
-            </p>
+            <h2 className="text-3xl font-bold text-sky-400 mb-6">Happy birthday Mommy 🎊 🥳 ❤</h2>
+            <div className="text-lg leading-relaxed space-y-4">
+              <p>Mommy, on behalf of the family dear,</p>
+              <p>We wish you joy and endless cheer.</p>
+              <p>Through every storm, you stood so strong,</p>
+              <p>Guiding us gently, all along.</p>
+              
+              <p>Thank you for never letting go,</p>
+              <p>Even when life moved harsh and slow.</p>
+              <p>Your love, a light that always shines,</p>
+              <p>In darkest hours, through toughest times.</p>
+              
+              <p>You're truly a woman brave and wise,</p>
+              <p>With warmth as vast as endless skies.</p>
+              <p>May this birthday bring smiles your way,</p>
+              <p>And bless your heart more every day.</p>
+            </div>
           </motion.div>
 
           <button
             onClick={nextStage}
             className="mt-12 px-6 py-3 bg-sky-400 text-black rounded-lg font-bold hover:bg-sky-300 transition flex items-center gap-2"
           >
-            See Our Goofy Photos 📸
+            See Our Photos 📸
           </button>
         </motion.div>
       )}
 
-      {/* Stage 3/4: Photos */}
-      {currentStage === (isFamilyFriendly ? 2 : 3) && (
+      {(currentStage === (isFamilyFriendly ? 2 : 3)) && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="min-h-screen py-12"
         >
           <h2 className="text-3xl font-bold text-center text-sky-400 mb-8">
-            {isFamilyFriendly ? "Our Wonderful Memories 🖼️✨" : "Our Goofy Memories Lmao 😂🫂"}
+            {isFamilyFriendly ? "Our Wonderful Memories 🖼️✨" : "Our Cherished Memories ❤️"}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
@@ -284,54 +262,9 @@ export default function SecretPage() {
               </motion.div>
             ))}
           </div>
-
-          <div className="text-center mt-12">
-            <button
-              onClick={nextStage}
-              className="px-6 py-3 bg-gradient-to-r from-sky-400 to-purple-400 text-black rounded-lg font-bold hover:shadow-lg hover:shadow-sky-400/30 transition-all"
-            >
-              Claim Your Finalllll Gift 😁
-            </button>
-          </div>
         </motion.div>
       )}
 
-      {/* Stage 4/5: Final Gift */}
-      {currentStage === (isFamilyFriendly ? 3 : 4) && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="min-h-screen flex flex-col items-center justify-center text-center p-6"
-        >
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            className="bg-gradient-to-br from-sky-900/20 to-purple-900/20 p-12 rounded-3xl border border-sky-400/20 backdrop-blur-sm max-w-2xl"
-          >
-            <h2 className="text-4xl font-bold text-sky-400 mb-6">One Last Surprise!</h2>
-            <p className="text-xl text-sky-200 mb-8">
-              I made this for you because I know you're too lazy to do it yourself 😉
-            </p>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block"
-            >
-              <a
-                href="http://dishadaniel.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-gradient-to-r from-sky-400 to-purple-400 text-black text-xl font-bold rounded-lg shadow-lg hover:shadow-sky-400/30 transition-all block"
-              >
-                Open 🚀
-              </a>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      )}
-
-      {/* Photo Modal */}
       <AnimatePresence>
         {selectedPhoto && (
           <motion.div

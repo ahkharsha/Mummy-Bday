@@ -20,7 +20,7 @@ export default function SecretGate({ onClose }: { onClose: () => void }) {
   const [isFamilyFriendly, setIsFamilyFriendly] = useState(false)
   const router = useRouter()
 
-  const correctHash = 'fb6ffcf7f6315c6aa4f3e7859b03d78837d33a3f5cf3ef8c76bf76a8f8f8b230'
+  const correctHash = 'c0a3b140fb6a18855de9ff932ba77fd891ba95e4884c76f6aa494bb624bd620f'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -96,10 +96,10 @@ export default function SecretGate({ onClose }: { onClose: () => void }) {
             {/* Always visible hint */}
             <div className="mb-4 p-3 bg-sky-900/20 rounded-lg text-sky-300 text-sm">
               <p className="font-bold mb-1">Hint:</p>
-              <p>Your bestfriend's most common password, followed by the first name of the current crush followed by the first name of his 3rd sem crush, separated by +</p>
+              <p>Dundu's date of arrival to our home in the DD/MM/YY format followed by Rocky's current age and Rocky's chella name, separated by +</p>
             </div>
             
-            {/* Family friendly toggle */}
+            {/* Family friendly toggle
             <div className="flex items-center mb-4">
               <button
                 type="button"
@@ -117,7 +117,7 @@ export default function SecretGate({ onClose }: { onClose: () => void }) {
               <span className="ml-3 text-sm text-sky-200">
                 Are you using Laptop?
               </span>
-            </div>
+            </div> */}
             
             <button
               type="submit"

@@ -4,7 +4,7 @@ import { italianno, poppins } from './fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Happy 20th Disha!',
+  title: 'Happy BDay Mummyyy!',
   description: 'A cosmic celebration',
   themeColor: '#000000'
 }

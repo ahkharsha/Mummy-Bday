@@ -24,7 +24,7 @@ export default function Home() {
           className="text-center mb-20"
         >
           <h1 className={`${italianno.className} text-7xl md:text-8xl mb-6 text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-purple-400`}>
-            Happy 20th Dishaaa!
+            Happy Birthday dear Mums!
           </h1>
           <p className="text-xl text-sky-200/80 max-w-2xl mx-auto">
             A collection of special messages just for you

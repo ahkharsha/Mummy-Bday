@@ -1,15 +1,33 @@
 // app/data/messages.ts
 export const messages = [
   { 
-    text: "You're the absolute best. Thank you for being my bestfriend Disha", 
-    author: "Harsha",
-    hint: "Your partner in crime for late night food runs",
-    emoji: "🍔"
+    text: "You are my life", 
+    author: "Arun Eatta",
+    hint: " - ",
+    emoji: " - "
   },
   { 
-    text: "Glad to have you as my roommate", 
-    author: "Anushka",
-    hint: "The one who shares your closet",
-    emoji: "👚"
+    text: "You are my right hand dear", 
+    author: "Mummy",
+    hint: "The ones there since childhood",
+    emoji: " - "
+  },
+  { 
+    text: "You are my son in disguise Raji ma", 
+    author: "Daddy",
+    hint: "The ones there since childhood",
+    emoji: " - "
+  },
+  { 
+    text: "Thank you for raising a miniature version of yourself", 
+    author: "Ananya",
+    hint: "👀",
+    emoji: " - "
+  },
+  { 
+    text: "Love you Mummy 😘", 
+    author: "Harsha",
+    hint: "👀",
+    emoji: " - "
   }
 ]
